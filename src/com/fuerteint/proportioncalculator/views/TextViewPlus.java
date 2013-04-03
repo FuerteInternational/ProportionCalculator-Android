@@ -1,10 +1,7 @@
 package com.fuerteint.proportioncalculator.views;
 
 import com.fuerteint.proportioncalculator.R;
-import com.fuerteint.proportioncalculator.data.Constants;
 import com.fuerteint.proportioncalculator.util.FontCache;
-import com.fuerteint.proportioncalculator.util.Logg;
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
@@ -31,10 +28,10 @@ public class TextViewPlus extends TextView {
 				R.styleable.TextViewPlus);
 		//String customFont = Constants.DEFAULT_FONT;
     	String customFont = a.getString(R.styleable.TextViewPlus_customFont);
-    	Logg.e("customfont", "font: "+customFont);
-        if(customFont == null) {
+    	//Logg.e("customfont", "font: "+customFont);
+        /*if(customFont == null) {
         	customFont = Constants.DEFAULT_FONT;
-        }
+        }*/
 		FontCache.setCustomFont(this, ctx, customFont);
 		a.recycle();
     }

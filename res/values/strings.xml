@@ -6,8 +6,28 @@
     <string name="acra_formkey">dFdMZC1TUjZoZnkxaUdIZDBwaTdhdVE6MQ</string>
     <string name="action_settings">Settings</string>
     
+    <!-- FONTS -->
+    <string name="roboto_bold">roboto-bold.ttf</string>
+    <string name="roboto_bolditalic">roboto-bolditalic.ttf</string>
+    <string name="roboto_italic">roboto-italic.ttf</string>
+    <string name="roboto_light">roboto-light.ttf</string>
+    <string name="roboto_lightitalic">roboto-lightitalic.ttf</string>
+    <string name="roboto_regular">roboto-regular.ttf</string>
+    <string name="roboto_thin">roboto-thin.ttf</string>
+    <string name="roboto_thinitalic">roboto-thinitalic.ttf</string>
+    <string name="robotocondensed_bold">robotocondensed-bold.ttf</string>
+    <string name="robotocondensed_bolditalic">robotocondensed-bolditalic.ttf</string>
+    <string name="robotocondensed_italic">robotocondensed-italic.ttf</string>
+    <string name="robotocondensed_regular">robotocondensed-regular.ttf</string>
+    
     <!-- BUTTONS TEXT -->
-    <string name="button_prima">Přímá ůměra</string>
-    <string name="button_neprima">Nepřímá ůměra</string>
+    <string name="button_prima">Přímá úměra</string>
+    <string name="button_neprima">Nepřímá úměra</string>
+    
+    <!-- TEXTS -->
+    <string name="x">x</string>
+    <string name="a">a</string>
+    <string name="b">b</string>
+    <string name="c">c</string>
 
 </resources>
