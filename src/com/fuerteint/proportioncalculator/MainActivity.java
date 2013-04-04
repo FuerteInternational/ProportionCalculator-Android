@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
@@ -44,10 +45,13 @@ public class MainActivity extends MasterActivity {
 		initActiveViews();
 	}
 
+	float textSize;
 	private void initActiveViews() {
-		EditText boxA = (EditText)findViewById(R.id.boxA);
+		final EditText boxA = (EditText)findViewById(R.id.boxA);
 		EditText boxB = (EditText)findViewById(R.id.boxB);
 		EditText boxC = (EditText)findViewById(R.id.boxC);
+		
+		textSize = boxA.getTextSize();
 
 		final Numbers mNum = new Numbers();
 
