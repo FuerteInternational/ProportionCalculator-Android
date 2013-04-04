@@ -22,7 +22,7 @@
     </style>
 
     <style name="calculate_text_letters">
-        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:textSize">@dimen/text_size_18</item>
         <item name="android:textColor">@color/black_number_text</item>
     </style>
     

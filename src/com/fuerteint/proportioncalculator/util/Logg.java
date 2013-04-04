@@ -18,7 +18,7 @@ public class Logg {
 	public static final int ON = 0;
 	public static final int OFF = 100;
 
-	public static int level = OFF;
+	public static int level = ON;
 
 	public static void v(String tag, String string) {
 		if (level <= VERBOSE) {

@@ -33,6 +33,8 @@ containing a value of this type.
          */
         public static final int activity_horizontal_margin=0x7f050000;
         public static final int activity_vertical_margin=0x7f050001;
+        public static final int letter_margin_horizontal=0x7f05000a;
+        public static final int letter_margin_vertical=0x7f05000b;
         public static final int text_size_12=0x7f050009;
         public static final int text_size_14=0x7f050008;
         public static final int text_size_16=0x7f050007;
@@ -62,24 +64,26 @@ containing a value of this type.
         public static final int selector_text_button_toggle=0x7f02000e;
     }
     public static final class id {
-        public static final int action_settings=0x7f090011;
-        public static final int arrow_left=0x7f09000f;
-        public static final int arrow_right=0x7f090010;
-        public static final int button_neprima=0x7f090002;
-        public static final int button_prima=0x7f090001;
-        public static final int linearLayout1=0x7f090000;
-        public static final int linearLayout2=0x7f090006;
-        public static final int resultBox=0x7f090003;
-        public static final int textViewPlus1=0x7f090004;
-        public static final int textViewPlus10=0x7f09000e;
-        public static final int textViewPlus2=0x7f090005;
-        public static final int textViewPlus3=0x7f090009;
-        public static final int textViewPlus4=0x7f09000a;
-        public static final int textViewPlus5=0x7f09000b;
-        public static final int textViewPlus6=0x7f09000c;
-        public static final int textViewPlus7=0x7f090007;
-        public static final int textViewPlus8=0x7f090008;
-        public static final int textViewPlus9=0x7f09000d;
+        public static final int RelativeLayout1=0x7f090007;
+        public static final int action_settings=0x7f090013;
+        public static final int arrow_left=0x7f090010;
+        public static final int arrow_right=0x7f090011;
+        public static final int boxA=0x7f09000b;
+        public static final int boxB=0x7f09000c;
+        public static final int boxC=0x7f09000d;
+        public static final int button_neprima=0x7f090003;
+        public static final int button_prima=0x7f090002;
+        public static final int formula=0x7f090012;
+        public static final int linearLayout1=0x7f090001;
+        public static final int mainView=0x7f090000;
+        public static final int result=0x7f090005;
+        public static final int resultBox=0x7f090004;
+        public static final int textView1=0x7f09000e;
+        public static final int textViewA=0x7f090009;
+        public static final int textViewB=0x7f09000a;
+        public static final int textViewC=0x7f090008;
+        public static final int textViewPlus2=0x7f090006;
+        public static final int textViewX=0x7f09000f;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -93,10 +97,18 @@ containing a value of this type.
         public static final int action_settings=0x7f060003;
         public static final int app_name=0x7f060000;
         public static final int b=0x7f060014;
-        public static final int button_neprima=0x7f060011;
+        public static final int button_invert=0x7f060011;
         /**  BUTTONS TEXT 
+ BUTTONS TEXT 
+ BUTTONS TEXT 
+ BUTTONS TEXT 
+ BUTTONS TEXT 
+ BUTTONS TEXT 
+ BUTTONS TEXT 
+ BUTTONS TEXT 
+ BUTTONS TEXT 
          */
-        public static final int button_prima=0x7f060010;
+        public static final int button_normal=0x7f060010;
         public static final int c=0x7f060015;
         public static final int flurry_apikey=0x7f060001;
         /**  FONTS 
@@ -113,6 +125,8 @@ containing a value of this type.
         public static final int robotocondensed_bolditalic=0x7f06000d;
         public static final int robotocondensed_italic=0x7f06000e;
         public static final int robotocondensed_regular=0x7f06000f;
+        public static final int vzorec_neprima=0x7f060017;
+        public static final int vzorec_prima=0x7f060016;
         /**  TEXTS 
          */
         public static final int x=0x7f060012;

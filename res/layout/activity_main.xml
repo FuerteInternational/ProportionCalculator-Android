@@ -1,19 +1,19 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_default"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity" >
+    android:paddingTop="@dimen/activity_vertical_margin" >
 
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin" >
 
         <ToggleButton
             android:id="@+id/button_prima"
@@ -22,8 +22,8 @@
             android:layout_weight="1"
             android:background="@drawable/selector_button_toggle_left"
             android:textColor="@drawable/selector_text_button_toggle"
-            android:textOff="@string/button_prima"
-            android:textOn="@string/button_prima" />
+            android:textOff="@string/button_normal"
+            android:textOn="@string/button_normal" />
 
         <ToggleButton
             android:id="@+id/button_neprima"
@@ -32,8 +32,8 @@
             android:layout_weight="1"
             android:background="@drawable/selector_button_toggle_right"
             android:textColor="@drawable/selector_text_button_toggle"
-            android:textOff="@string/button_neprima"
-            android:textOn="@string/button_neprima" />
+            android:textOff="@string/button_invert"
+            android:textOn="@string/button_invert" />
     </LinearLayout>
 
     <RelativeLayout
@@ -45,13 +45,13 @@
         android:background="@drawable/pc_bcg_segment_green" >
 
         <com.fuerteint.proportioncalculator.views.TextViewPlus
-            android:id="@+id/textViewPlus1"
+            android:id="@+id/result"
             style="@style/calculate_text_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:singleLine="true"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:text="70" />
+            android:layout_alignParentRight="true" />
 
         <com.fuerteint.proportioncalculator.views.TextViewPlus
             android:id="@+id/textViewPlus2"
@@ -59,130 +59,162 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:text="x" />
+            android:text="x=" />
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="280dp"
+    <RelativeLayout
+        android:id="@+id/RelativeLayout1"
+        android:layout_width="300dp"
         android:layout_height="205dp"
         android:layout_below="@+id/linearLayout1"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="34dp"
-        android:orientation="vertical"
-        android:padding="10dp" >
+        android:layout_marginTop="34dp" >
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/textViewC"
+            android:layout_below="@+id/textViewA"
+            android:layout_toLeftOf="@+id/textViewB"
+            android:layout_toRightOf="@+id/textViewA"
+            android:orientation="vertical" >
 
-            <com.fuerteint.proportioncalculator.views.TextViewPlus
-                android:id="@+id/textViewPlus7"
-                style="@style/calculate_text_letters"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="left"
-                android:text="@string/a" />
-
-            <com.fuerteint.proportioncalculator.views.TextViewPlus
-                android:id="@+id/textViewPlus8"
-                style="@style/calculate_text_letters"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="right"
-                android:text="@string/b" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1" >
-
-            <com.fuerteint.proportioncalculator.views.TextViewPlus
-                android:id="@+id/textViewPlus3"
-                style="@style/calculate_text_numbers"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="11" />
+                android:layout_weight="1" >
 
-            <com.fuerteint.proportioncalculator.views.TextViewPlus
-                android:id="@+id/textViewPlus4"
-                style="@style/calculate_text_numbers"
+                <EditText
+                    android:id="@+id/boxA"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    style="@style/calculate_text_numbers"
+                    android:hint="@string/a"
+                    android:gravity="center"
+                    android:inputType="number" />
+
+                <EditText
+                    android:id="@+id/boxB"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="@string/b"
+                    style="@style/calculate_text_numbers"
+                    android:gravity="center"
+                    android:inputType="number" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="11" />
+                android:layout_weight="1" >
+
+                <EditText
+                    android:id="@+id/boxC"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="@string/c"
+                    style="@style/calculate_text_numbers"
+                    android:gravity="center"
+                    android:inputType="number" >
+
+                    <requestFocus />
+                </EditText>
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    style="@style/calculate_text_numbers"
+                    android:text="@string/x" />
+            </LinearLayout>
+
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1" >
+        <com.fuerteint.proportioncalculator.views.TextViewPlus
+            android:id="@+id/textViewA"
+            style="@style/calculate_text_letters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:paddingLeft="@dimen/letter_margin_horizontal"
+            android:paddingTop="@dimen/letter_margin_vertical"
+            android:text="@string/a" />
 
-            <com.fuerteint.proportioncalculator.views.TextViewPlus
-                android:id="@+id/textViewPlus5"
-                style="@style/calculate_text_numbers"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="11" />
+        <com.fuerteint.proportioncalculator.views.TextViewPlus
+            android:id="@+id/textViewB"
+            style="@style/calculate_text_letters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:paddingRight="@dimen/letter_margin_horizontal"
+            android:paddingTop="@dimen/letter_margin_vertical"
+            android:text="@string/b" />
 
-            <com.fuerteint.proportioncalculator.views.TextViewPlus
-                android:id="@+id/textViewPlus6"
-                style="@style/calculate_text_numbers"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/x" />
-        </LinearLayout>
+        <com.fuerteint.proportioncalculator.views.TextViewPlus
+            android:id="@+id/textViewC"
+            style="@style/calculate_text_letters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:paddingBottom="@dimen/letter_margin_vertical"
+            android:paddingLeft="@dimen/letter_margin_horizontal"
+            android:text="@string/c" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+        <com.fuerteint.proportioncalculator.views.TextViewPlus
+            android:id="@+id/textViewX"
+            style="@style/calculate_text_letters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:paddingBottom="@dimen/letter_margin_vertical"
+            android:paddingRight="@dimen/letter_margin_horizontal"
+            android:text="@string/x" />
 
-            <com.fuerteint.proportioncalculator.views.TextViewPlus
-                android:id="@+id/textViewPlus9"
-                style="@style/calculate_text_letters"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="left"
-                android:text="@string/c" />
+        <ImageView
+            android:id="@+id/arrow_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="40dp"
+            android:src="@drawable/pc_arrow_down" />
 
-            <com.fuerteint.proportioncalculator.views.TextViewPlus
-                android:id="@+id/textViewPlus10"
-                style="@style/calculate_text_letters"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="right"
-                android:text="@string/x" />
-        </LinearLayout>
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/arrow_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="40dp"
+            android:src="@drawable/pc_arrow_down" />
 
-    <ImageView
-        android:id="@+id/arrow_left"
+    </RelativeLayout>
+
+    <com.fuerteint.proportioncalculator.views.TextViewPlus
+        android:id="@+id/formula"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/linearLayout2"
-        android:layout_alignLeft="@+id/linearLayout2"
-        android:layout_marginBottom="40dp"
-        android:src="@drawable/pc_arrow_down" />
-
-    <ImageView
-        android:id="@+id/arrow_right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/linearLayout2"
-        android:layout_alignRight="@+id/linearLayout2"
-        android:layout_marginBottom="40dp"
-        android:src="@drawable/pc_arrow_down" />
+        android:layout_below="@+id/RelativeLayout1"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

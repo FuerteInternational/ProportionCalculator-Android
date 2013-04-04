@@ -21,13 +21,16 @@
     <string name="robotocondensed_regular">robotocondensed-regular.ttf</string>
     
     <!-- BUTTONS TEXT -->
-    <string name="button_prima">Přímá úměra</string>
-    <string name="button_neprima">Nepřímá úměra</string>
+    <string name="button_normal">Normal</string>
+    <string name="button_invert">Inverse</string>
     
     <!-- TEXTS -->
     <string name="x">x</string>
     <string name="a">a</string>
     <string name="b">b</string>
     <string name="c">c</string>
+    
+    <string name="vzorec_prima">x = ((c * b) / a)</string>
+    <string name="vzorec_neprima">x = ((a * b) / c)</string>
 
 </resources>
