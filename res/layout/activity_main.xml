@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_default"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingTop="@dimen/activity_vertical_margin" >
+    android:paddingTop="@dimen/activity_vertical_margin" xmlns:app="http://schemas.android.com/apk/res/com.fuerteint.proportioncalculator">
 
     <LinearLayout
         android:id="@+id/linearLayout1"
@@ -93,7 +93,9 @@
                     style="@style/calculate_text_numbers"
                     android:hint="@string/a"
                     android:gravity="center"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    app:maxSize="@dimen/text_size_24"
+                    app:minSize="@dimen/text_size_12" />
 
                 <com.fuerteint.proportioncalculator.views.EditTextViewPlus
                     android:id="@+id/boxB"
@@ -104,7 +106,9 @@
                     android:hint="@string/b"
                     style="@style/calculate_text_numbers"
                     android:gravity="center"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    app:maxSize="@dimen/text_size_24"
+                    app:minSize="@dimen/text_size_12" />
             </LinearLayout>
 
             <LinearLayout
@@ -121,7 +125,9 @@
                     android:hint="@string/c"
                     style="@style/calculate_text_numbers"
                     android:gravity="center"
-                    android:inputType="number" >
+                    android:inputType="number"
+                    app:maxSize="@dimen/text_size_24"
+                    app:minSize="@dimen/text_size_12" >
 
                     <requestFocus />
                 </com.fuerteint.proportioncalculator.views.EditTextViewPlus>

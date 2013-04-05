@@ -17,6 +17,26 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int customFont=0x7f010000;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int maxSize=0x7f010001;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int minSize=0x7f010002;
     }
     public static final class color {
         public static final int black_number_text=0x7f040003;
@@ -164,6 +184,53 @@ containing a value of this type.
         public static final int calculate_text_result=0x7f070005;
     }
     public static final class styleable {
+        /** Attributes that can be used with a EditTextViewPlus.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #EditTextViewPlus_maxSize com.fuerteint.proportioncalculator:maxSize}</code></td><td></td></tr>
+           <tr><td><code>{@link #EditTextViewPlus_minSize com.fuerteint.proportioncalculator:minSize}</code></td><td></td></tr>
+           </table>
+           @see #EditTextViewPlus_maxSize
+           @see #EditTextViewPlus_minSize
+         */
+        public static final int[] EditTextViewPlus = {
+            0x7f010001, 0x7f010002
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.fuerteint.proportioncalculator.R.attr#maxSize}
+          attribute's value can be found in the {@link #EditTextViewPlus} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:maxSize
+        */
+        public static final int EditTextViewPlus_maxSize = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.fuerteint.proportioncalculator.R.attr#minSize}
+          attribute's value can be found in the {@link #EditTextViewPlus} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:minSize
+        */
+        public static final int EditTextViewPlus_minSize = 1;
         /** Attributes that can be used with a TextViewPlus.
            <p>Includes the following attributes:</p>
            <table>

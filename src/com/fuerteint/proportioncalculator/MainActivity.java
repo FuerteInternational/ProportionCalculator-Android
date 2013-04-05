@@ -1,11 +1,13 @@
 package com.fuerteint.proportioncalculator;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
@@ -188,7 +190,7 @@ public class MainActivity extends MasterActivity {
 					double a = Double.parseDouble(mNum.textA);
 					double b = Double.parseDouble(mNum.textB);
 					double c = Double.parseDouble(mNum.textC);
-					double x = round(((c*b)/a), 1);
+					double x = ((c*b)/a);
 					if(x > Double.MAX_VALUE) {
 						result.setText("inf.");
 					} else {
@@ -207,11 +209,16 @@ public class MainActivity extends MasterActivity {
 					double a = Double.parseDouble(mNum.textA);
 					double b = Double.parseDouble(mNum.textB);
 					double c = Double.parseDouble(mNum.textC);
-					double x = round(((a*b)/c), 1);
+					double x = ((a*b)/c);
 					if(x > Double.MAX_VALUE) {
 						result.setText("inf.");
 					} else {
-						result.setText(String.valueOf(x));
+						if(x > 1e4 || x < 1e-4) {
+							result.setText(new DecimalFormat("#.#####E0").format(x));
+						} else {
+							result.setText(new DecimalFormat("#.#####").format(x));
+						}
+						
 					}
 				}else {
 					result.setText("");
@@ -224,14 +231,14 @@ public class MainActivity extends MasterActivity {
 
 	}
 	
-	public static double round(double value, int places) {
+	/*public static double round(double value, int places) {
 	    if (places < 0) throw new IllegalArgumentException();
 
 	    long factor = (long) Math.pow(10, places);
 	    value = value * factor;
 	    long tmp = Math.round(value);
 	    return (double) tmp / factor;
-	}
+	}*/
 	
 	public static void hideSoftKeyboard(FragmentActivity activity) {
 	    InputMethodManager inputMethodManager = (InputMethodManager)  activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
