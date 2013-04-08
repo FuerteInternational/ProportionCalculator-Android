@@ -1,17 +1,15 @@
 package com.fuerteint.proportioncalculator;
 
-import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
+import android.view.WindowManager;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -21,6 +19,8 @@ import android.widget.ToggleButton;
 import com.fuerteint.proportioncalculator.data.AppSettings;
 import com.fuerteint.proportioncalculator.data.Constants;
 import com.fuerteint.proportioncalculator.data.Numbers;
+import com.fuerteint.proportioncalculator.keyboard.CustomKeyboard;
+import com.fuerteint.proportioncalculator.keyboard.CustomKeyboard.KeyboardListener;
 import com.fuerteint.proportioncalculator.util.Logg;
 import com.fuerteint.proportioncalculator.views.TextViewPlus;
 import com.nineoldandroids.animation.Animator;
@@ -36,24 +36,30 @@ public class MainActivity extends MasterActivity {
 		setContentView(R.layout.activity_main);
 		RelativeLayout mainView = (RelativeLayout)findViewById(R.id.mainView);
 		mainView.setOnTouchListener(new View.OnTouchListener() {
-			
+
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
-				hideSoftKeyboard(MainActivity.this);
+				hideKeyboard();
 				return false;
 			}
 		});
-		
+
 		initActiveViews();
 	}
 
-	float textSize;
+	@Override
+	public void onResume() {
+		super.onResume();
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM,
+				WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+	}
+
+
 	private void initActiveViews() {
-		final EditText boxA = (EditText)findViewById(R.id.boxA);
+		EditText boxA = (EditText)findViewById(R.id.boxA);
 		EditText boxB = (EditText)findViewById(R.id.boxB);
 		EditText boxC = (EditText)findViewById(R.id.boxC);
-		
-		textSize = boxA.getTextSize();
+
 
 		final Numbers mNum = new Numbers();
 
@@ -111,8 +117,8 @@ public class MainActivity extends MasterActivity {
 				calculateResult(mNum);
 			}
 		});
-		
-		
+
+
 		//add view listeners
 		View.OnClickListener buttonHandler = new View.OnClickListener() {
 
@@ -129,6 +135,15 @@ public class MainActivity extends MasterActivity {
 						((ToggleButton)v).setChecked(true);
 					}
 					break;
+				case R.id.boxA:
+					showKeyboard(v.getId());
+					break;
+				case R.id.boxB:
+					showKeyboard(v.getId());
+					break;
+				case R.id.boxC:
+					showKeyboard(v.getId());
+					break;
 				}
 
 			}
@@ -138,7 +153,7 @@ public class MainActivity extends MasterActivity {
 
 			@Override
 			public void onCheckedChanged(CompoundButton v, boolean isChecked) {
-				hideSoftKeyboard(MainActivity.this);
+				hideKeyboard();
 				switch(v.getId()) {
 				case R.id.button_prima:
 					if(isChecked) {
@@ -159,15 +174,71 @@ public class MainActivity extends MasterActivity {
 				}
 			}
 		};
-		
+
+		View.OnFocusChangeListener focusHandler = new View.OnFocusChangeListener() {
+
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				switch(v.getId()) {
+				case R.id.boxA:
+					showKeyboard(v.getId());
+					break;
+				case R.id.boxB:
+					showKeyboard(v.getId());
+					break;
+				case R.id.boxC:
+					showKeyboard(v.getId());
+					break;
+				}
+
+			}
+		};
+
+		View.OnTouchListener touchHandler = new View.OnTouchListener() {
+
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				switch(v.getId()) {
+				case R.id.boxA:
+					Logg.v("TOUCH", "selection start: "+((EditText)v).getSelectionStart());
+					Logg.v("TOUCH", "selection end: "+((EditText)v).getSelectionEnd());
+					break;
+				case R.id.boxB:
+					showKeyboard(v.getId());
+					Logg.v("TOUCH", "selection start: "+((EditText)v).getSelectionStart());
+					Logg.v("TOUCH", "selection end: "+((EditText)v).getSelectionEnd());
+					break;
+				case R.id.boxC:
+					showKeyboard(v.getId());
+					Logg.v("TOUCH", "selection start: "+((EditText)v).getSelectionStart());
+					Logg.v("TOUCH", "selection end: "+((EditText)v).getSelectionEnd());
+					break;
+				}
+				return false;
+			}
+
+		};
+
 		ToggleButton button_prima = (ToggleButton)findViewById(R.id.button_prima);
 		ToggleButton button_neprima = (ToggleButton)findViewById(R.id.button_neprima);
 
 		button_prima.setOnClickListener(buttonHandler);
 		button_neprima.setOnClickListener(buttonHandler);
+		boxA.setOnClickListener(buttonHandler);
+		boxB.setOnClickListener(buttonHandler);
+		boxC.setOnClickListener(buttonHandler);
+
 		button_prima.setOnCheckedChangeListener(checkedHandler);
 		button_neprima.setOnCheckedChangeListener(checkedHandler);
-		
+
+		boxA.setOnFocusChangeListener(focusHandler);
+		boxB.setOnFocusChangeListener(focusHandler);
+		boxC.setOnFocusChangeListener(focusHandler);
+
+		boxA.setOnTouchListener(touchHandler);
+		boxB.setOnTouchListener(touchHandler);
+		boxC.setOnTouchListener(touchHandler);
+
 		switch(AppSettings.getInstance(this).getType()) {
 		case Constants.TYPE_NORMAL:
 			button_prima.setChecked(true);
@@ -178,7 +249,7 @@ public class MainActivity extends MasterActivity {
 		}
 
 	}
-	
+
 
 	private void calculateResult(Numbers mNum) {
 		TextViewPlus result = (TextViewPlus)findViewById(R.id.result);
@@ -218,7 +289,7 @@ public class MainActivity extends MasterActivity {
 						} else {
 							result.setText(new DecimalFormat("#.#####").format(x));
 						}
-						
+
 					}
 				}else {
 					result.setText("");
@@ -230,20 +301,12 @@ public class MainActivity extends MasterActivity {
 		}
 
 	}
-	
-	/*public static double round(double value, int places) {
-	    if (places < 0) throw new IllegalArgumentException();
 
-	    long factor = (long) Math.pow(10, places);
-	    value = value * factor;
-	    long tmp = Math.round(value);
-	    return (double) tmp / factor;
-	}*/
-	
-	public static void hideSoftKeyboard(FragmentActivity activity) {
+
+	/*public static void hideSoftKeyboard(FragmentActivity activity) {
 	    InputMethodManager inputMethodManager = (InputMethodManager)  activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
 	    inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
-	}
+	}*/
 
 
 	@Override
@@ -298,6 +361,78 @@ public class MainActivity extends MasterActivity {
 			}
 		});
 		set.start();
+	}
+
+	public void showKeyboard(int resId) {
+
+		final EditText editText = (EditText)findViewById(resId);
+
+		CustomKeyboard f = new CustomKeyboard();
+		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+		//ft.setCustomAnimations(R.anim.slide_up, R.anim.slide_down);
+		ft.replace(R.id.keyboardContainer, f, Constants.FRAGMENT_KEYBOARD);
+		f.setKeyboardButtonListener(new KeyboardListener() {
+
+			@Override
+			public void onKeyPressed(String key) {
+				String text = editText.getText().toString();
+				int selectionStart = editText.getSelectionStart();
+				if(selectionStart != text.length()) {
+					editText.setText(editText.getText().insert(selectionStart, key));
+					editText.setSelection(selectionStart+1);
+				} else {
+					editText.setText(editText.getText().append(key));
+					editText.setSelection(selectionStart+1);
+				}
+			}
+
+			@Override
+			public void onKeyDeleteLastLetter() {
+				String text = editText.getText().toString();
+				int selectionStart = editText.getSelectionStart();
+				int selectionEnd = editText.getSelectionEnd();
+				if(selectionStart > 0) {
+					if(text.length() > selectionEnd) {
+						text = text.substring(0, selectionStart) + text.substring(selectionEnd+1);
+					} else {
+						text = text.substring(0, text.length()-1);
+					}
+					editText.setText(text);
+					editText.setSelection(selectionStart-1);
+				}
+			}
+
+			@Override
+			public void onKeyClearAll() {
+				editText.setText("");
+			}
+
+			@Override
+			public void onKeyChangePolarity() {
+
+			}
+
+		});
+		ft.commitAllowingStateLoss();
+	}
+
+	public void hideKeyboard() {
+		CustomKeyboard f = (CustomKeyboard)getSupportFragmentManager().findFragmentByTag(Constants.FRAGMENT_KEYBOARD);
+		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+		if(f != null) {
+			ft.remove(f);
+		}
+		ft.commitAllowingStateLoss();
+	}
+
+	@Override
+	public void onBackPressed() {
+		final CustomKeyboard fragment = (CustomKeyboard) getSupportFragmentManager().findFragmentByTag(Constants.FRAGMENT_KEYBOARD);
+		if (fragment != null) { 
+			hideKeyboard();
+		} else {
+			super.onBackPressed();
+		}
 	}
 
 

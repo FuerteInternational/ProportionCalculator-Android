@@ -14,6 +14,7 @@ public class EditTextViewPlus extends EditText {
 	private float textSize;
 	private float MAX_SIZE;
 	private float MIN_SIZE;
+	private float originaltextSize;
 
 
 	public EditTextViewPlus(Context context) {
@@ -38,11 +39,12 @@ public class EditTextViewPlus extends EditText {
 		float minSize = a.getDimension(R.styleable.EditTextViewPlus_minSize, this.getTextSize());
 		MAX_SIZE = maxSize;
 		MIN_SIZE = minSize;
-
+		originaltextSize = this.getTextSize();
 		textSize = this.getTextSize();
 		FontCache.setCustomFont(this, ctx, customFont);
 		a.recycle();
 	}
+	
 
 
 	@Override
@@ -72,6 +74,8 @@ public class EditTextViewPlus extends EditText {
 					this.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
 				}
 			}
+		} else {
+			this.setTextSize(TypedValue.COMPLEX_UNIT_PX, originaltextSize);
 		}
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 	}

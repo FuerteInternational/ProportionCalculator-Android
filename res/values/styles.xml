@@ -1,4 +1,5 @@
-<resources xmlns:android="http://schemas.android.com/apk/res/android">
+<resources xmlns:android="http://schemas.android.com/apk/res/android" 
+    xmlns:app="http://schemas.android.com/apk/res/com.fuerteint.proportioncalculator" >
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
@@ -29,11 +30,34 @@
     <style name="calculate_text_numbers">
         <item name="android:textSize">@dimen/text_size_24</item>
         <item name="android:textColor">@color/black_number_text</item>
+        <item name="android:background">@drawable/trojcl_bckgr_editbox_number</item>
+        <item name="android:gravity">center</item>
+        <item name="android:singleLine">true</item>
+        <item name="minSize">@dimen/text_size_12</item>
+        <item name="maxSize">@dimen/text_size_24</item>
+        <item name="android:padding">5dp</item>
     </style>
 
      <style name="calculate_text_result">
         <item name="android:textSize">@dimen/text_size_26</item>
         <item name="android:textColor">@color/black_number_text</item>
     </style>
+    
+     <style name="key">
+         <item name="android:clickable">true</item>
+         <item name="android:layout_width">wrap_content</item>
+         <item name="android:layout_height">wrap_content</item>
+         <item name="android:layout_margin">2dp</item>
+         <item name="layout_gravity">fill</item>
+         <item name="android:minWidth">64dip</item>
+     </style>
+    
+     <style name="key_number" parent="key" >
+         <item name="android:background">@drawable/selector_key_number</item>
+     </style>
+     
+     <style name="key_function" parent="key" >
+         <item name="android:background">@drawable/selector_key_function</item>
+     </style>
     
 </resources>

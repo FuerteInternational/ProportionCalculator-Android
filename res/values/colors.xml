@@ -4,5 +4,6 @@
     <color name="gray_button_text">#969696</color>
     <color name="gray_x">#918E8E</color>
     <color name="black_number_text">#303030</color>
+    <color name="keyboard_bg">#e6999999</color>
     
 </resources>

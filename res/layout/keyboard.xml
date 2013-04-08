@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.fuerteint.proportioncalculator"
+    android:id="@+id/keyboardBox"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/keyboard_bg" android:padding="5dp" >
+
+    <android.support.v7.widget.GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        app:columnCount="4"
+        app:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/key_1"
+            style="@style/key_number"
+            android:text="@string/key_1" />
+
+        <Button
+            android:id="@+id/key_2"
+            style="@style/key_number"
+            android:text="@string/key_2" />
+
+        <Button
+            android:id="@+id/key_3"
+            style="@style/key_number"
+            android:text="@string/key_3" />
+
+        <RelativeLayout
+            android:id="@+id/key_c"
+            style="@style/key_function" >
+
+            <com.fuerteint.proportioncalculator.views.TextViewPlus
+                android:id="@+id/textViewPlus1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/key_c"
+                android:textSize="@dimen/text_size_22"
+                android:textStyle="bold"
+                app:customFont="@string/roboto_bold"
+                android:textColor="@color/white" />
+            
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/key_4"
+            style="@style/key_number"
+            android:text="@string/key_4" />
+
+        <Button
+            android:id="@+id/key_5"
+            style="@style/key_number"
+            android:text="@string/key_5" />
+
+        <Button
+            android:id="@+id/key_6"
+            style="@style/key_number"
+            android:text="@string/key_6" />
+
+        <RelativeLayout
+            android:id="@+id/key_back"
+            style="@style/key_function" >
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ico_delete" />
+            
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/key_7"
+            style="@style/key_number"
+            android:text="@string/key_7" />
+
+        <Button
+            android:id="@+id/key_8"
+            style="@style/key_number"
+            android:text="@string/key_8" />
+
+        <Button
+            android:id="@+id/key_9"
+            style="@style/key_number"
+            android:text="@string/key_9" />
+
+        <RelativeLayout
+            android:id="@+id/key_plusminus"
+            style="@style/key_function" >
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ico_minus" />
+            
+        </RelativeLayout>
+
+        <android.support.v7.widget.Space
+            android:layout_width="wrap_content"
+            app:layout_columnSpan="2" />
+
+        <Button
+            android:id="@+id/key_0"
+            style="@style/key_number"
+            android:text="@string/key_0" />
+
+        <RelativeLayout
+            android:id="@+id/key_dot"
+            style="@style/key_function" >
+
+            <com.fuerteint.proportioncalculator.views.TextViewPlus
+                android:id="@+id/textViewPlus2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/key_dot"
+                android:textSize="@dimen/text_size_22"
+                app:customFont="@string/roboto_bold"
+                android:textStyle="bold"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+    </android.support.v7.widget.GridLayout>
+
+</RelativeLayout>
