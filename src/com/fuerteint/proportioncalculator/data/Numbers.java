@@ -1,5 +1,9 @@
 package com.fuerteint.proportioncalculator.data;
 
+/**
+ * @author Vojtech Hrdina
+ *
+ */
 public class Numbers {
 	
 	public String textA;

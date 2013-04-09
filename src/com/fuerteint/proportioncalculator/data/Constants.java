@@ -1,5 +1,9 @@
 package com.fuerteint.proportioncalculator.data;
 
+/**
+ * @author Vojtech Hrdina
+ *
+ */
 public class Constants {
 
 	public static final String DEFAULT_FONT = "roboto-regular.ttf";

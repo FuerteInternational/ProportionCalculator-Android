@@ -4,6 +4,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 
+/**
+ * @author Vojtech Hrdina
+ *
+ */
 public class AppSettings {
 	
 	private int type;

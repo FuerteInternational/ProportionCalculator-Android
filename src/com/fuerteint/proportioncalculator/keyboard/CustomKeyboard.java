@@ -10,8 +10,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+/**
+ * @author Vojtech Hrdina
+ *
+ */
 public class CustomKeyboard extends Fragment {
 
 	private static final String TAG = "CustomKeyboard";
@@ -114,7 +119,7 @@ public class CustomKeyboard extends Fragment {
 		RelativeLayout key_Back = (RelativeLayout)v.findViewById(R.id.key_back);
 		RelativeLayout key_PlusMinus = (RelativeLayout)v.findViewById(R.id.key_plusminus);
 		RelativeLayout key_Dot = (RelativeLayout)v.findViewById(R.id.key_dot);
-		RelativeLayout keyboardBox = (RelativeLayout)v.findViewById(R.id.keyboardBox);
+		LinearLayout keyboardBox = (LinearLayout)v.findViewById(R.id.keyboardBox);
 		
 		key_1.setOnClickListener(buttonHandler);
 		key_2.setOnClickListener(buttonHandler);

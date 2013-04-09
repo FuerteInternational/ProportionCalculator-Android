@@ -26,7 +26,6 @@ public class TextViewPlus extends TextView {
     private void setCustomFont(Context ctx, AttributeSet attrs) {
     	TypedArray a = ctx.obtainStyledAttributes(attrs,
 				R.styleable.TextViewPlus);
-		//String customFont = Constants.DEFAULT_FONT;
     	String customFont = a.getString(R.styleable.TextViewPlus_customFont);
     	//Logg.e("customfont", "font: "+customFont);
         /*if(customFont == null) {

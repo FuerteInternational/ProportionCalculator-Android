@@ -2,7 +2,7 @@
 <resources>
     
     <!-- BUTTONS TEXT -->
-    <string name="button_normal">Přímá</string>
-    <string name="button_invert">Nepřímá</string>
+    <string name="button_normal">Priama</string>
+    <string name="button_invert">Nepriama</string>
     
 </resources>

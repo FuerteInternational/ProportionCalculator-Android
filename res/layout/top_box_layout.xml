@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/trojcl_bckgr_top1"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin" >
+
+    <ToggleButton
+        android:id="@+id/button_prima"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textStyle="bold"
+        android:textSize="@dimen/text_size_14"
+        android:background="@drawable/selector_button_toggle_left"
+        android:textColor="@drawable/selector_text_button_toggle"
+        android:textOff="@string/button_normal"
+        android:textOn="@string/button_normal" />
+
+    <ToggleButton
+        android:id="@+id/button_neprima"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textStyle="bold"
+        android:textSize="@dimen/text_size_14"
+        android:background="@drawable/selector_button_toggle_right"
+        android:textColor="@drawable/selector_text_button_toggle"
+        android:textOff="@string/button_invert"
+        android:textOn="@string/button_invert" />
+
+</LinearLayout>

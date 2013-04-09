@@ -9,6 +9,10 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.widget.EditText;
 
+/**
+ * @author Vojtech Hrdina
+ *
+ */
 public class EditTextViewPlus extends EditText {
 
 	private float textSize;
@@ -71,6 +75,9 @@ public class EditTextViewPlus extends EditText {
 				//scale up
 				if(widthText < widthEditBox && textSize < MAX_SIZE) {
 					textSize = textSize * scale;
+					if(textSize > originaltextSize) {
+						textSize = originaltextSize;
+					}
 					this.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
 				}
 			}

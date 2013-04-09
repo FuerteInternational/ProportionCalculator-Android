@@ -1,6 +1,8 @@
 package com.fuerteint.proportioncalculator;
 
 import java.text.DecimalFormat;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -28,6 +30,10 @@ import com.nineoldandroids.animation.Animator.AnimatorListener;
 import com.nineoldandroids.animation.AnimatorSet;
 import com.nineoldandroids.animation.ObjectAnimator;
 
+/**
+ * @author Vojtech Hrdina
+ *
+ */
 public class MainActivity extends MasterActivity {
 
 	@Override
@@ -265,7 +271,12 @@ public class MainActivity extends MasterActivity {
 					if(x > Double.MAX_VALUE) {
 						result.setText("inf.");
 					} else {
-						result.setText(String.valueOf(x));
+						if(x > 1e4 || x < 1e-4) {
+							result.setText(new DecimalFormat("#.#####E0").format(x));
+						} else {
+							result.setText(new DecimalFormat("#.#####").format(x));
+						}
+
 					}
 				}else {
 					result.setText("");
@@ -301,12 +312,6 @@ public class MainActivity extends MasterActivity {
 		}
 
 	}
-
-
-	/*public static void hideSoftKeyboard(FragmentActivity activity) {
-	    InputMethodManager inputMethodManager = (InputMethodManager)  activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
-	    inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
-	}*/
 
 
 	@Override
@@ -377,12 +382,27 @@ public class MainActivity extends MasterActivity {
 			public void onKeyPressed(String key) {
 				String text = editText.getText().toString();
 				int selectionStart = editText.getSelectionStart();
-				if(selectionStart != text.length()) {
-					editText.setText(editText.getText().insert(selectionStart, key));
-					editText.setSelection(selectionStart+1);
+
+				if(key.equalsIgnoreCase(getResources().getString(R.string.key_dot))) {
+					if(compareText(text, "\\"+getResources().getString(R.string.key_dot))) {
+
+					} else if(text.length() > 0 && selectionStart != 0) {
+						if(selectionStart != text.length()) {
+							editText.setText(editText.getText().insert(selectionStart, key));
+							editText.setSelection(selectionStart+1);
+						} else {
+							editText.setText(editText.getText().append(key));
+							editText.setSelection(selectionStart+1);
+						}
+					}
 				} else {
-					editText.setText(editText.getText().append(key));
-					editText.setSelection(selectionStart+1);
+					if(selectionStart != text.length()) {
+						editText.setText(editText.getText().insert(selectionStart, key));
+						editText.setSelection(selectionStart+1);
+					} else {
+						editText.setText(editText.getText().append(key));
+						editText.setSelection(selectionStart+1);
+					}
 				}
 			}
 
@@ -393,7 +413,7 @@ public class MainActivity extends MasterActivity {
 				int selectionEnd = editText.getSelectionEnd();
 				if(selectionStart > 0) {
 					if(text.length() > selectionEnd) {
-						text = text.substring(0, selectionStart) + text.substring(selectionEnd+1);
+						text = text.substring(0, selectionStart-1) + text.substring(selectionEnd);
 					} else {
 						text = text.substring(0, text.length()-1);
 					}
@@ -409,7 +429,19 @@ public class MainActivity extends MasterActivity {
 
 			@Override
 			public void onKeyChangePolarity() {
-
+				String text = editText.getText().toString();
+				int selectionStart = editText.getSelectionStart();
+				if(text.length() > 0) {
+					if(text.startsWith("-")) {
+						text = text.substring(1, text.length());
+						editText.setText(text);
+						editText.setSelection(selectionStart-1);
+					} else {
+						text = editText.getText().insert(0, "-").toString();
+						editText.setText(text);
+						editText.setSelection(selectionStart+1);
+					}
+				}
 			}
 
 		});
@@ -434,6 +466,17 @@ public class MainActivity extends MasterActivity {
 			super.onBackPressed();
 		}
 	}
+
+	public static boolean compareText(String text, String pattern) {
+		Pattern patternText = Pattern.compile(pattern);
+		Matcher findText = patternText.matcher(text);
+		if(findText.find()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 
 
 }

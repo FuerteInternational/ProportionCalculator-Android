@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res/com.fuerteint.proportioncalculator"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/keyboardBox"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/keyboard_bg" android:padding="5dp" >
+    android:background="@color/keyboard_bg"
+    android:orientation="vertical"
+    android:padding="5dp" >
 
-    <android.support.v7.widget.GridLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        app:columnCount="4"
-        app:orientation="horizontal" >
+        android:layout_height="wrap_content" >
 
         <Button
             android:id="@+id/key_1"
@@ -38,12 +36,15 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="@string/key_c"
+                android:textColor="@color/white"
                 android:textSize="@dimen/text_size_22"
-                android:textStyle="bold"
-                app:customFont="@string/roboto_bold"
-                android:textColor="@color/white" />
-            
+                android:textStyle="bold" />
         </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
 
         <Button
             android:id="@+id/key_4"
@@ -70,8 +71,12 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:src="@drawable/ico_delete" />
-            
         </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
 
         <Button
             android:id="@+id/key_7"
@@ -98,12 +103,24 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:src="@drawable/ico_minus" />
-            
         </RelativeLayout>
+    </LinearLayout>
 
-        <android.support.v7.widget.Space
-            android:layout_width="wrap_content"
-            app:layout_columnSpan="2" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+        </LinearLayout>
 
         <Button
             android:id="@+id/key_0"
@@ -120,11 +137,10 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="@string/key_dot"
+                android:textColor="@color/white"
                 android:textSize="@dimen/text_size_22"
-                app:customFont="@string/roboto_bold"
-                android:textStyle="bold"
-                android:textColor="@color/white" />
+                android:textStyle="bold" />
         </RelativeLayout>
-    </android.support.v7.widget.GridLayout>
+    </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

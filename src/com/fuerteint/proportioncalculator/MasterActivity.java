@@ -4,6 +4,10 @@ import android.support.v4.app.FragmentActivity;
 
 import com.flurry.android.FlurryAgent;
 
+/**
+ * @author Vojtech Hrdina
+ *
+ */
 public class MasterActivity extends FragmentActivity {
 	
 	@Override

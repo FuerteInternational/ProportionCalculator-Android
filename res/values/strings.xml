@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">ProportionCalculator</string>
+    <string name="app_name">iProportions</string>
     <string name="flurry_apikey">4CXNBJB2TZZTDQD4QDZF</string>
     <string name="acra_formkey">dFdMZC1TUjZoZnkxaUdIZDBwaTdhdVE6MQ</string>
     <string name="action_settings">Settings</string>
