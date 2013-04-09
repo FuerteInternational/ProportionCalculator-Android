@@ -11,4 +11,7 @@ public class Constants {
 	public static final int TYPE_INVERT = 1;
 	
 	public static String FRAGMENT_KEYBOARD = "keyboard-fragment";
+	
+	public static final int PADDING_NO_HINT = 5;
+	public static final int PADDING_HINT = 15;
 }

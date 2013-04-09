@@ -1,127 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/RelativeLayout1"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@+id/linearLayout1"
+    android:layout_centerHorizontal="true"
+    android:padding="10dp" >
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/linearLayout1"
-        android:layout_centerHorizontal="true"
-        android:padding="10dp" >
+        android:background="@drawable/trojcl_bckgr_editbox"
+        android:orientation="vertical" >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/trojcl_bckgr_editbox"
-            android:orientation="vertical" >
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1" >
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="5dp"
+                android:layout_marginRight="10dp"
                 android:layout_weight="1" >
+
+                <com.fuerteint.proportioncalculator.views.TextViewPlus
+                    android:id="@+id/textHintA"
+                    style="@style/calculate_text_numbers_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/a" />
 
                 <com.fuerteint.proportioncalculator.views.EditTextViewPlus
                     android:id="@+id/boxA"
                     style="@style/calculate_text_numbers_editable"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginRight="10dp"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:hint="@string/a" />
+                    android:ems="10" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1" >
+
+                <com.fuerteint.proportioncalculator.views.TextViewPlus
+                    android:id="@+id/textHintB"
+                    style="@style/calculate_text_numbers_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/b" />
 
                 <com.fuerteint.proportioncalculator.views.EditTextViewPlus
                     android:id="@+id/boxB"
                     style="@style/calculate_text_numbers_editable"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:hint="@string/b" />
+                    android:ems="10" />
+            </RelativeLayout>
+        </LinearLayout>
 
-            </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1" >
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
                 android:layout_weight="1" >
+
+                <com.fuerteint.proportioncalculator.views.TextViewPlus
+                    android:id="@+id/textHintC"
+                    style="@style/calculate_text_numbers_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/c" />
 
                 <com.fuerteint.proportioncalculator.views.EditTextViewPlus
                     android:id="@+id/boxC"
                     style="@style/calculate_text_numbers_editable"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginRight="10dp"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:hint="@string/c" >
+                    android:ems="10" >
 
                     <requestFocus />
                 </com.fuerteint.proportioncalculator.views.EditTextViewPlus>
+            </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/textView1"
-                    style="@style/calculate_text_numbers_normal"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@string/x" />
-
-            </LinearLayout>
-
+            <TextView
+                android:id="@+id/textView1"
+                style="@style/calculate_text_numbers_normal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/x" />
         </LinearLayout>
+    </LinearLayout>
 
-        <com.fuerteint.proportioncalculator.views.TextViewPlus
-            android:id="@+id/textViewA"
-            style="@style/calculate_text_letters"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:gravity="center"
-            android:text="@string/a" />
+    <com.fuerteint.proportioncalculator.views.TextViewPlus
+        android:id="@+id/textViewA"
+        style="@style/calculate_text_letters"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:text="@string/a" />
 
-        <com.fuerteint.proportioncalculator.views.TextViewPlus
-            android:id="@+id/textViewB"
-            style="@style/calculate_text_letters"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:gravity="center"
-            android:text="@string/b" />
+    <com.fuerteint.proportioncalculator.views.TextViewPlus
+        android:id="@+id/textViewB"
+        style="@style/calculate_text_letters"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:text="@string/b" />
 
-        <com.fuerteint.proportioncalculator.views.TextViewPlus
-            android:id="@+id/textViewC"
-            style="@style/calculate_text_letters"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:gravity="center"
-            android:text="@string/c" />
+    <com.fuerteint.proportioncalculator.views.TextViewPlus
+        android:id="@+id/textViewC"
+        style="@style/calculate_text_letters"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:gravity="center"
+        android:text="@string/c" />
 
-        <com.fuerteint.proportioncalculator.views.TextViewPlus
-            android:id="@+id/textViewX"
-            style="@style/calculate_text_letters"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:gravity="center"
-            android:text="@string/x" />
+    <com.fuerteint.proportioncalculator.views.TextViewPlus
+        android:id="@+id/textViewX"
+        style="@style/calculate_text_letters"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:text="@string/x" />
 
-        <ImageView
-            android:id="@+id/arrow_left"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginBottom="40dp"
-            android:src="@drawable/pc_arrow_down" />
+    <ImageView
+        android:id="@+id/arrow_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="40dp"
+        android:src="@drawable/pc_arrow_down" />
 
-        <ImageView
-            android:id="@+id/arrow_right"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginBottom="40dp"
-            android:src="@drawable/pc_arrow_down" />
+    <ImageView
+        android:id="@+id/arrow_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="40dp"
+        android:src="@drawable/pc_arrow_down" />
 
-    </RelativeLayout>
+</RelativeLayout>

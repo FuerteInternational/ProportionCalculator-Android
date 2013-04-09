@@ -6,5 +6,6 @@
     <color name="black_number_text">#303030</color>
     <color name="keyboard_bg">#e6999999</color>
     <color name="bg">#D7D7D7</color>
+    <color name="TransparentGrey">#80999999</color>
     
 </resources>

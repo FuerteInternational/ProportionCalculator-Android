@@ -62,18 +62,36 @@ public class MainActivity extends MasterActivity {
 
 
 	private void initActiveViews() {
-		EditText boxA = (EditText)findViewById(R.id.boxA);
-		EditText boxB = (EditText)findViewById(R.id.boxB);
-		EditText boxC = (EditText)findViewById(R.id.boxC);
+		final EditText boxA = (EditText)findViewById(R.id.boxA);
+		final EditText boxB = (EditText)findViewById(R.id.boxB);
+		final EditText boxC = (EditText)findViewById(R.id.boxC);
 
 
 		final Numbers mNum = new Numbers();
+		final TextViewPlus textHintA = (TextViewPlus)findViewById(R.id.textHintA);
+		final TextViewPlus textHintB = (TextViewPlus)findViewById(R.id.textHintB);
+		final TextViewPlus textHintC = (TextViewPlus)findViewById(R.id.textHintC);
+		
+		final float density = getResources().getDisplayMetrics().density;
+		
+		final int paddingDpHint  = (int)(Constants.PADDING_HINT * density);
+		final int paddingDpNoHint  = (int)(Constants.PADDING_NO_HINT * density);
+		boxA.setPadding(0,0,paddingDpHint,0);
+		boxB.setPadding(0,0,paddingDpHint,0);
+		boxC.setPadding(0,0,paddingDpHint,0);
 
 		//add view text watchers
 		boxA.addTextChangedListener(new TextWatcher() {
 
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				if(count > 0) {
+					boxA.setPadding(paddingDpNoHint,0,paddingDpNoHint,0);
+					textHintA.setVisibility(View.GONE);
+				} else {
+					boxA.setPadding(0,0,paddingDpHint,0);
+					textHintA.setVisibility(View.VISIBLE);
+				}
 			}
 
 			@Override
@@ -92,6 +110,13 @@ public class MainActivity extends MasterActivity {
 
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				if(count > 0) {
+					boxB.setPadding(paddingDpNoHint,0,paddingDpNoHint,0);
+					textHintB.setVisibility(View.GONE);
+				} else {
+					boxB.setPadding(0,0,paddingDpHint,0);
+					textHintB.setVisibility(View.VISIBLE);
+				}
 			}
 
 			@Override
@@ -110,6 +135,13 @@ public class MainActivity extends MasterActivity {
 
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				if(count > 0) {
+					boxC.setPadding(paddingDpNoHint,0,paddingDpNoHint,0);
+					textHintC.setVisibility(View.GONE);
+				} else {
+					boxC.setPadding(0,0,paddingDpHint,0);
+					textHintC.setVisibility(View.VISIBLE);
+				}
 			}
 
 			@Override
