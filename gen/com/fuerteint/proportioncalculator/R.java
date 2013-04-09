@@ -392,6 +392,7 @@ containing a value of this type.
  BUTTONS TEXT 
  BUTTONS TEXT 
  BUTTONS TEXT 
+ BUTTONS TEXT 
          */
         public static final int button_normal=0x7f080010;
         public static final int c=0x7f080015;

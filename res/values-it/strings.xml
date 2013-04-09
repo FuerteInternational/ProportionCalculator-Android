@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     
+   
     <!-- BUTTONS TEXT -->
-    <string name="button_normal">Zwykły</string>
-    <string name="button_invert">Odwrócony</string>
+    <string name="button_normal">Diretta</string>
+    <string name="button_invert">Inversa</string>
     
 </resources>
