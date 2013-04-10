@@ -52,6 +52,7 @@
 
     <style name="calculate_text_numbers_editable" parent="calculate_text_numbers">
         <item name="android:textColor">@color/black_number_text</item>
+        <item name="android:longClickable">false</item>
     </style>
     
     <style name="calculate_text_numbers_hint" >

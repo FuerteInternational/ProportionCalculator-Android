@@ -38,7 +38,11 @@
                     style="@style/calculate_text_numbers_editable"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:ems="10" />
+                    android:ems="10" >
+                    
+                    <requestFocus />
+                </com.fuerteint.proportioncalculator.views.EditTextViewPlus>
+
             </RelativeLayout>
 
             <RelativeLayout
@@ -89,10 +93,8 @@
                     style="@style/calculate_text_numbers_editable"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:ems="10" >
+                    android:ems="10" />
 
-                    <requestFocus />
-                </com.fuerteint.proportioncalculator.views.EditTextViewPlus>
             </RelativeLayout>
 
             <TextView

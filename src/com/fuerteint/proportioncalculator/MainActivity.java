@@ -23,6 +23,7 @@ import com.fuerteint.proportioncalculator.data.Constants;
 import com.fuerteint.proportioncalculator.data.Numbers;
 import com.fuerteint.proportioncalculator.keyboard.CustomKeyboard;
 import com.fuerteint.proportioncalculator.keyboard.CustomKeyboard.KeyboardListener;
+import com.fuerteint.proportioncalculator.util.DisplayUtil;
 import com.fuerteint.proportioncalculator.util.Logg;
 import com.fuerteint.proportioncalculator.views.TextViewPlus;
 import com.nineoldandroids.animation.Animator;
@@ -71,11 +72,10 @@ public class MainActivity extends MasterActivity {
 		final TextViewPlus textHintA = (TextViewPlus)findViewById(R.id.textHintA);
 		final TextViewPlus textHintB = (TextViewPlus)findViewById(R.id.textHintB);
 		final TextViewPlus textHintC = (TextViewPlus)findViewById(R.id.textHintC);
+
+		final int paddingDpHint  = DisplayUtil.toPixels(this, Constants.PADDING_HINT);
+		final int paddingDpNoHint  = DisplayUtil.toPixels(this, Constants.PADDING_NO_HINT);
 		
-		final float density = getResources().getDisplayMetrics().density;
-		
-		final int paddingDpHint  = (int)(Constants.PADDING_HINT * density);
-		final int paddingDpNoHint  = (int)(Constants.PADDING_NO_HINT * density);
 		boxA.setPadding(0,0,paddingDpHint,0);
 		boxB.setPadding(0,0,paddingDpHint,0);
 		boxC.setPadding(0,0,paddingDpHint,0);
@@ -86,8 +86,10 @@ public class MainActivity extends MasterActivity {
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
 				if(count > 0) {
-					boxA.setPadding(paddingDpNoHint,0,paddingDpNoHint,0);
-					textHintA.setVisibility(View.GONE);
+					if(textHintA.getVisibility() != View.GONE) {
+						boxA.setPadding(paddingDpNoHint,0,paddingDpNoHint,0);
+						textHintA.setVisibility(View.GONE);
+					}
 				} else {
 					boxA.setPadding(0,0,paddingDpHint,0);
 					textHintA.setVisibility(View.VISIBLE);
@@ -111,8 +113,10 @@ public class MainActivity extends MasterActivity {
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
 				if(count > 0) {
-					boxB.setPadding(paddingDpNoHint,0,paddingDpNoHint,0);
-					textHintB.setVisibility(View.GONE);
+					if(textHintB.getVisibility() != View.GONE) {
+						boxB.setPadding(paddingDpNoHint,0,paddingDpNoHint,0);
+						textHintB.setVisibility(View.GONE);
+					}
 				} else {
 					boxB.setPadding(0,0,paddingDpHint,0);
 					textHintB.setVisibility(View.VISIBLE);
@@ -136,8 +140,10 @@ public class MainActivity extends MasterActivity {
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
 				if(count > 0) {
-					boxC.setPadding(paddingDpNoHint,0,paddingDpNoHint,0);
-					textHintC.setVisibility(View.GONE);
+					if(textHintC.getVisibility() != View.GONE) {
+						boxC.setPadding(paddingDpNoHint,0,paddingDpNoHint,0);
+						textHintC.setVisibility(View.GONE);
+					}
 				} else {
 					boxC.setPadding(0,0,paddingDpHint,0);
 					textHintC.setVisibility(View.VISIBLE);
@@ -509,6 +515,6 @@ public class MainActivity extends MasterActivity {
 		}
 	}
 
-
+	
 
 }
