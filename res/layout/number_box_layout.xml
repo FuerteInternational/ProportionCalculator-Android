@@ -39,10 +39,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:ems="10" >
-                    
+
                     <requestFocus />
                 </com.fuerteint.proportioncalculator.views.EditTextViewPlus>
-
             </RelativeLayout>
 
             <RelativeLayout
@@ -94,23 +93,34 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:ems="10" />
-
             </RelativeLayout>
 
-            <TextView
-                android:id="@+id/textView1"
-                style="@style/calculate_text_numbers_normal"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/x" />
+                android:layout_weight="1" >
+
+                <com.fuerteint.proportioncalculator.views.TextViewPlus
+                    android:id="@+id/textHintD"
+                    style="@style/calculate_text_numbers_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/d" />
+
+                <com.fuerteint.proportioncalculator.views.EditTextViewPlus
+                    android:id="@+id/boxD"
+                    style="@style/calculate_text_numbers_editable"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:ems="10" />
+            </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
 
     <com.fuerteint.proportioncalculator.views.TextViewPlus
-        android:id="@+id/textViewA"
+        android:id="@+id/buttonA"
         style="@style/calculate_text_letters"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
@@ -118,7 +128,7 @@
         android:text="@string/a" />
 
     <com.fuerteint.proportioncalculator.views.TextViewPlus
-        android:id="@+id/textViewB"
+        android:id="@+id/buttonB"
         style="@style/calculate_text_letters"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
@@ -126,7 +136,7 @@
         android:text="@string/b" />
 
     <com.fuerteint.proportioncalculator.views.TextViewPlus
-        android:id="@+id/textViewC"
+        android:id="@+id/buttonC"
         style="@style/calculate_text_letters"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
@@ -134,7 +144,7 @@
         android:text="@string/c" />
 
     <com.fuerteint.proportioncalculator.views.TextViewPlus
-        android:id="@+id/textViewX"
+        android:id="@+id/buttonD"
         style="@style/calculate_text_letters"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"

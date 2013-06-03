@@ -29,6 +29,7 @@
     <string name="a">a</string>
     <string name="b">b</string>
     <string name="c">c</string>
+    <string name="d">d</string>
     
     <string name="vzorec_prima">x = ((c * b) / a)</string>
     <string name="vzorec_neprima">x = ((a * b) / c)</string>

@@ -107,14 +107,19 @@ containing a value of this type.
     }
     public static final class id {
         public static final int RelativeLayout1=0x7f0a0018;
-        public static final int action_settings=0x7f0a0029;
-        public static final int arrow_left=0x7f0a0025;
-        public static final int arrow_right=0x7f0a0026;
+        public static final int action_settings=0x7f0a002a;
+        public static final int arrow_left=0x7f0a0026;
+        public static final int arrow_right=0x7f0a0027;
         public static final int boxA=0x7f0a001b;
         public static final int boxB=0x7f0a001d;
         public static final int boxC=0x7f0a001f;
-        public static final int button_neprima=0x7f0a0028;
-        public static final int button_prima=0x7f0a0027;
+        public static final int boxD=0x7f0a0021;
+        public static final int buttonA=0x7f0a0022;
+        public static final int buttonB=0x7f0a0023;
+        public static final int buttonC=0x7f0a0024;
+        public static final int buttonD=0x7f0a0025;
+        public static final int button_neprima=0x7f0a0029;
+        public static final int button_prima=0x7f0a0028;
         public static final int formula=0x7f0a0001;
         public static final int imageView1=0x7f0a000f;
         public static final int imageView2=0x7f0a0014;
@@ -141,13 +146,9 @@ containing a value of this type.
         public static final int textHintA=0x7f0a001a;
         public static final int textHintB=0x7f0a001c;
         public static final int textHintC=0x7f0a001e;
-        public static final int textView1=0x7f0a0020;
-        public static final int textViewA=0x7f0a0021;
-        public static final int textViewB=0x7f0a0022;
-        public static final int textViewC=0x7f0a0023;
+        public static final int textHintD=0x7f0a0020;
         public static final int textViewPlus1=0x7f0a000a;
         public static final int textViewPlus2=0x7f0a0017;
-        public static final int textViewX=0x7f0a0024;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -179,19 +180,20 @@ containing a value of this type.
          */
         public static final int button_normal=0x7f070010;
         public static final int c=0x7f070015;
+        public static final int d=0x7f070016;
         public static final int flurry_apikey=0x7f070001;
-        public static final int key_0=0x7f070023;
-        public static final int key_1=0x7f070018;
-        public static final int key_2=0x7f070019;
-        public static final int key_3=0x7f07001a;
-        public static final int key_4=0x7f07001b;
-        public static final int key_5=0x7f07001c;
-        public static final int key_6=0x7f07001d;
-        public static final int key_7=0x7f07001e;
-        public static final int key_8=0x7f07001f;
-        public static final int key_9=0x7f070020;
-        public static final int key_c=0x7f070021;
-        public static final int key_dot=0x7f070022;
+        public static final int key_0=0x7f070024;
+        public static final int key_1=0x7f070019;
+        public static final int key_2=0x7f07001a;
+        public static final int key_3=0x7f07001b;
+        public static final int key_4=0x7f07001c;
+        public static final int key_5=0x7f07001d;
+        public static final int key_6=0x7f07001e;
+        public static final int key_7=0x7f07001f;
+        public static final int key_8=0x7f070020;
+        public static final int key_9=0x7f070021;
+        public static final int key_c=0x7f070022;
+        public static final int key_dot=0x7f070023;
         /**  FONTS 
          */
         public static final int roboto_bold=0x7f070004;
@@ -206,8 +208,8 @@ containing a value of this type.
         public static final int robotocondensed_bolditalic=0x7f07000d;
         public static final int robotocondensed_italic=0x7f07000e;
         public static final int robotocondensed_regular=0x7f07000f;
-        public static final int vzorec_neprima=0x7f070017;
-        public static final int vzorec_prima=0x7f070016;
+        public static final int vzorec_neprima=0x7f070018;
+        public static final int vzorec_prima=0x7f070017;
         /**  TEXTS 
          */
         public static final int x=0x7f070012;
@@ -242,13 +244,14 @@ containing a value of this type.
         public static final int button_text=0x7f080002;
         public static final int calculate_text_letters=0x7f080003;
         public static final int calculate_text_numbers=0x7f080004;
+        public static final int calculate_text_numbers_X=0x7f080008;
         public static final int calculate_text_numbers_editable=0x7f080006;
         public static final int calculate_text_numbers_hint=0x7f080007;
         public static final int calculate_text_numbers_normal=0x7f080005;
-        public static final int calculate_text_result=0x7f080008;
-        public static final int key=0x7f080009;
-        public static final int key_function=0x7f08000b;
-        public static final int key_number=0x7f08000a;
+        public static final int calculate_text_result=0x7f080009;
+        public static final int key=0x7f08000a;
+        public static final int key_function=0x7f08000c;
+        public static final int key_number=0x7f08000b;
     }
     public static final class styleable {
         /** Attributes that can be used with a EditTextViewPlus.

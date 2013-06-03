@@ -6,9 +6,11 @@ import java.util.regex.Pattern;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GestureDetectorCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Menu;
+import android.view.GestureDetector.OnDoubleTapListener;
+import android.view.GestureDetector.OnGestureListener;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -66,19 +68,28 @@ public class MainActivity extends MasterActivity {
 		final EditText boxA = (EditText)findViewById(R.id.boxA);
 		final EditText boxB = (EditText)findViewById(R.id.boxB);
 		final EditText boxC = (EditText)findViewById(R.id.boxC);
+		final EditText boxD = (EditText)findViewById(R.id.boxD);
 
 
 		final Numbers mNum = new Numbers();
 		final TextViewPlus textHintA = (TextViewPlus)findViewById(R.id.textHintA);
 		final TextViewPlus textHintB = (TextViewPlus)findViewById(R.id.textHintB);
 		final TextViewPlus textHintC = (TextViewPlus)findViewById(R.id.textHintC);
+		final TextViewPlus textHintD = (TextViewPlus)findViewById(R.id.textHintD);
+
+
+		TextViewPlus buttonA = (TextViewPlus)findViewById(R.id.buttonA);
+		TextViewPlus buttonB = (TextViewPlus)findViewById(R.id.buttonB);
+		TextViewPlus buttonC = (TextViewPlus)findViewById(R.id.buttonC);
+		TextViewPlus buttonD = (TextViewPlus)findViewById(R.id.buttonD);
 
 		final int paddingDpHint  = DisplayUtil.toPixels(this, Constants.PADDING_HINT);
 		final int paddingDpNoHint  = DisplayUtil.toPixels(this, Constants.PADDING_NO_HINT);
-		
+
 		boxA.setPadding(0,0,paddingDpHint,0);
 		boxB.setPadding(0,0,paddingDpHint,0);
 		boxC.setPadding(0,0,paddingDpHint,0);
+		boxD.setPadding(0,0,paddingDpHint,0);
 
 		//add view text watchers
 		boxA.addTextChangedListener(new TextWatcher() {
@@ -162,6 +173,33 @@ public class MainActivity extends MasterActivity {
 			}
 		});
 
+		boxD.addTextChangedListener(new TextWatcher() {
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				if(count > 0) {
+					if(textHintD.getVisibility() != View.GONE) {
+						boxC.setPadding(paddingDpNoHint,0,paddingDpNoHint,0);
+						textHintD.setVisibility(View.GONE);
+					}
+				} else {
+					boxC.setPadding(0,0,paddingDpHint,0);
+					textHintD.setVisibility(View.VISIBLE);
+				}
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				mNum.textD = s.toString();
+				calculateResult(mNum);
+			}
+		});
+
 
 		//add view listeners
 		View.OnClickListener buttonHandler = new View.OnClickListener() {
@@ -180,18 +218,70 @@ public class MainActivity extends MasterActivity {
 					}
 					break;
 				case R.id.boxA:
-					showKeyboard(v.getId());
-					break;
 				case R.id.boxB:
-					showKeyboard(v.getId());
-					break;
 				case R.id.boxC:
+				case R.id.boxD:
 					showKeyboard(v.getId());
 					break;
 				}
 
 			}
 		};
+		
+		final GestureDetectorCompat gd = new GestureDetectorCompat(this, new OnGestureListener() {
+
+			@Override
+			public boolean onSingleTapUp(MotionEvent e) {
+				//setX(findViewById(e.getSource()));
+				Logg.v("GESTURE DETECTOR", "onSingleTapUp");
+				return false;
+			}
+
+			@Override
+			public void onShowPress(MotionEvent e) {
+			}
+
+			@Override
+			public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX,
+					float distanceY) {
+				return false;
+			}
+
+			@Override
+			public void onLongPress(MotionEvent e) {
+			}
+
+			@Override
+			public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
+					float velocityY) {
+				return false;
+			}
+
+			@Override
+			public boolean onDown(MotionEvent e) {
+				return true;
+			}
+		});
+
+		gd.setOnDoubleTapListener(new OnDoubleTapListener() {
+
+			@Override
+			public boolean onSingleTapConfirmed(MotionEvent e) {
+				return false;
+			}
+
+			@Override
+			public boolean onDoubleTapEvent(MotionEvent e) {
+				Logg.v("GESTURE DETECTOR", "onDoubleTapEvent");
+				return false;
+			}
+
+			@Override
+			public boolean onDoubleTap(MotionEvent e) {
+				Logg.v("GESTURE DETECTOR", "onDoubleTap");
+				return true;
+			}
+		});
 
 		CompoundButton.OnCheckedChangeListener checkedHandler = new CompoundButton.OnCheckedChangeListener() {
 
@@ -233,6 +323,9 @@ public class MainActivity extends MasterActivity {
 				case R.id.boxC:
 					showKeyboard(v.getId());
 					break;
+				case R.id.boxD:
+					showKeyboard(v.getId());
+					break;
 				}
 
 			}
@@ -257,6 +350,19 @@ public class MainActivity extends MasterActivity {
 					Logg.v("TOUCH", "selection start: "+((EditText)v).getSelectionStart());
 					Logg.v("TOUCH", "selection end: "+((EditText)v).getSelectionEnd());
 					break;
+				case R.id.boxD:
+					showKeyboard(v.getId());
+					Logg.v("TOUCH", "selection start: "+((EditText)v).getSelectionStart());
+					Logg.v("TOUCH", "selection end: "+((EditText)v).getSelectionEnd());
+					break;
+				case R.id.buttonA:
+					return gd.onTouchEvent(event);
+				case R.id.buttonB:
+					return gd.onTouchEvent(event);
+				case R.id.buttonC:
+					return gd.onTouchEvent(event);
+				case R.id.buttonD:
+					return gd.onTouchEvent(event);
 				}
 				return false;
 			}
@@ -271,6 +377,7 @@ public class MainActivity extends MasterActivity {
 		boxA.setOnClickListener(buttonHandler);
 		boxB.setOnClickListener(buttonHandler);
 		boxC.setOnClickListener(buttonHandler);
+		boxD.setOnClickListener(buttonHandler);
 
 		button_prima.setOnCheckedChangeListener(checkedHandler);
 		button_neprima.setOnCheckedChangeListener(checkedHandler);
@@ -278,10 +385,17 @@ public class MainActivity extends MasterActivity {
 		boxA.setOnFocusChangeListener(focusHandler);
 		boxB.setOnFocusChangeListener(focusHandler);
 		boxC.setOnFocusChangeListener(focusHandler);
+		boxD.setOnFocusChangeListener(focusHandler);
 
 		boxA.setOnTouchListener(touchHandler);
 		boxB.setOnTouchListener(touchHandler);
 		boxC.setOnTouchListener(touchHandler);
+		boxD.setOnTouchListener(touchHandler);
+		
+		buttonA.setOnTouchListener(touchHandler);
+		buttonB.setOnTouchListener(touchHandler);
+		buttonC.setOnTouchListener(touchHandler);
+		buttonD.setOnTouchListener(touchHandler);
 
 		switch(AppSettings.getInstance(this).getType()) {
 		case Constants.TYPE_NORMAL:
@@ -349,14 +463,6 @@ public class MainActivity extends MasterActivity {
 			break;
 		}
 
-	}
-
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
 	}
 
 
@@ -515,6 +621,77 @@ public class MainActivity extends MasterActivity {
 		}
 	}
 
-	
+	public void setX(View v) {
+		restoreButtonsBoxs();
+		((TextViewPlus)v).setText(getResources().getString(R.string.x));
+
+		switch(v.getId()) {
+		case R.id.buttonA:
+			((TextViewPlus)findViewById(R.id.textHintA)).setTextAppearance(this, R.style.calculate_text_numbers_X);
+			break;
+		case R.id.buttonB:
+			((TextViewPlus)findViewById(R.id.textHintB)).setTextAppearance(this, R.style.calculate_text_numbers_X);
+			break;
+		case R.id.buttonC:
+			((TextViewPlus)findViewById(R.id.textHintC)).setTextAppearance(this, R.style.calculate_text_numbers_X);
+			break;
+		case R.id.buttonD:
+			((TextViewPlus)findViewById(R.id.textHintD)).setTextAppearance(this, R.style.calculate_text_numbers_X);
+			break;
+		}
+	}
+
+	private void restoreButtonsBoxs() {
+		TextViewPlus buttonA = (TextViewPlus)findViewById(R.id.buttonA);
+		TextViewPlus buttonB = (TextViewPlus)findViewById(R.id.buttonB);
+		TextViewPlus buttonC = (TextViewPlus)findViewById(R.id.buttonC);
+		TextViewPlus buttonD = (TextViewPlus)findViewById(R.id.buttonD);
+
+		TextViewPlus textHintA = (TextViewPlus)findViewById(R.id.textHintA);
+		TextViewPlus textHintB = (TextViewPlus)findViewById(R.id.textHintB);
+		TextViewPlus textHintC = (TextViewPlus)findViewById(R.id.textHintC);
+		TextViewPlus textHintD = (TextViewPlus)findViewById(R.id.textHintD);
+
+		EditText boxA = (EditText)findViewById(R.id.boxA);
+		EditText boxB = (EditText)findViewById(R.id.boxB);
+		EditText boxC = (EditText)findViewById(R.id.boxC);
+		EditText boxD = (EditText)findViewById(R.id.boxD);
+
+		String letterA = getResources().getString(R.string.a);
+		String letterB = getResources().getString(R.string.b);
+		String letterC = getResources().getString(R.string.c);
+		String letterD = getResources().getString(R.string.d);
+
+		boxA.setText("");
+		boxB.setText("");
+		boxC.setText("");
+		boxD.setText("");
+
+		buttonA.setText(letterA);
+		buttonB.setText(letterB);
+		buttonC.setText(letterC);
+		buttonD.setText(letterD);
+
+		textHintA.setText(letterA);
+		textHintB.setText(letterB);
+		textHintC.setText(letterC);
+		textHintD.setText(letterD);
+
+		textHintA.setTextAppearance(this, R.style.calculate_text_numbers_hint);
+		textHintB.setTextAppearance(this, R.style.calculate_text_numbers_hint);
+		textHintC.setTextAppearance(this, R.style.calculate_text_numbers_hint);
+		textHintD.setTextAppearance(this, R.style.calculate_text_numbers_hint);
+	}
+
+
+	private String fromula;
+
+	public void setFormula(String formula) {
+		this.fromula = formula;
+	}
+
+	public String getFormula() {
+		return this.fromula;
+	}
 
 }
