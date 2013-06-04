@@ -31,8 +31,25 @@
     <string name="c">c</string>
     <string name="d">d</string>
     
-    <string name="vzorec_prima">x = ((c * b) / a)</string>
-    <string name="vzorec_neprima">x = ((a * b) / c)</string>
+    <string name="formula_normal_mode_1">x = ((b * c) / d)</string>
+    <string name="formula_normal_mode_2">x = ((a * d) / c)</string>
+    <string name="formula_normal_mode_3">x = ((a * d) / b)</string>
+    <string name="formula_normal_mode_4">x = ((b * c) / a)</string>
+    
+    <string name="formula_invert_mode_1">x = ((c * d) / b)</string>
+    <string name="formula_invert_mode_2">x = ((c * d) / a)</string>
+    <string name="formula_invert_mode_3">x = ((a * b) / d)</string>
+    <string name="formula_invert_mode_4">x = ((a * b) / c)</string>
+    
+    <string name="formula_title_normal_mode_1">x : c = b : d</string>
+    <string name="formula_title_normal_mode_2">a : c = x : d</string>
+    <string name="formula_title_normal_mode_3">a : x = b : d</string>
+    <string name="formula_title_normal_mode_4">a : c = b : x</string>
+    
+    <string name="formula_title_invert_mode_1">x : c = d : b</string>
+    <string name="formula_title_invert_mode_2">a : c = d : x</string>
+    <string name="formula_title_invert_mode_3">a : x = d : b</string>
+    <string name="formula_title_invert_mode_4">a : c = x : b</string>
     
     <string name="key_1">1</string>
     <string name="key_2">2</string>

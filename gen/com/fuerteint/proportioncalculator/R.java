@@ -107,7 +107,7 @@ containing a value of this type.
     }
     public static final class id {
         public static final int RelativeLayout1=0x7f0a0018;
-        public static final int action_settings=0x7f0a002a;
+        public static final int action_settings=0x7f0a002b;
         public static final int arrow_left=0x7f0a0026;
         public static final int arrow_right=0x7f0a0027;
         public static final int boxA=0x7f0a001b;
@@ -118,9 +118,10 @@ containing a value of this type.
         public static final int buttonB=0x7f0a0023;
         public static final int buttonC=0x7f0a0024;
         public static final int buttonD=0x7f0a0025;
-        public static final int button_neprima=0x7f0a0029;
-        public static final int button_prima=0x7f0a0028;
+        public static final int button_neprima=0x7f0a002a;
+        public static final int button_prima=0x7f0a0029;
         public static final int formula=0x7f0a0001;
+        public static final int formula_title=0x7f0a0028;
         public static final int imageView1=0x7f0a000f;
         public static final int imageView2=0x7f0a0014;
         public static final int key_0=0x7f0a0015;
@@ -182,18 +183,34 @@ containing a value of this type.
         public static final int c=0x7f070015;
         public static final int d=0x7f070016;
         public static final int flurry_apikey=0x7f070001;
-        public static final int key_0=0x7f070024;
-        public static final int key_1=0x7f070019;
-        public static final int key_2=0x7f07001a;
-        public static final int key_3=0x7f07001b;
-        public static final int key_4=0x7f07001c;
-        public static final int key_5=0x7f07001d;
-        public static final int key_6=0x7f07001e;
-        public static final int key_7=0x7f07001f;
-        public static final int key_8=0x7f070020;
-        public static final int key_9=0x7f070021;
-        public static final int key_c=0x7f070022;
-        public static final int key_dot=0x7f070023;
+        public static final int formula_invert_mode_1=0x7f07001b;
+        public static final int formula_invert_mode_2=0x7f07001c;
+        public static final int formula_invert_mode_3=0x7f07001d;
+        public static final int formula_invert_mode_4=0x7f07001e;
+        public static final int formula_normal_mode_1=0x7f070017;
+        public static final int formula_normal_mode_2=0x7f070018;
+        public static final int formula_normal_mode_3=0x7f070019;
+        public static final int formula_normal_mode_4=0x7f07001a;
+        public static final int formula_title_invert_mode_1=0x7f070023;
+        public static final int formula_title_invert_mode_2=0x7f070024;
+        public static final int formula_title_invert_mode_3=0x7f070025;
+        public static final int formula_title_invert_mode_4=0x7f070026;
+        public static final int formula_title_normal_mode_1=0x7f07001f;
+        public static final int formula_title_normal_mode_2=0x7f070020;
+        public static final int formula_title_normal_mode_3=0x7f070021;
+        public static final int formula_title_normal_mode_4=0x7f070022;
+        public static final int key_0=0x7f070032;
+        public static final int key_1=0x7f070027;
+        public static final int key_2=0x7f070028;
+        public static final int key_3=0x7f070029;
+        public static final int key_4=0x7f07002a;
+        public static final int key_5=0x7f07002b;
+        public static final int key_6=0x7f07002c;
+        public static final int key_7=0x7f07002d;
+        public static final int key_8=0x7f07002e;
+        public static final int key_9=0x7f07002f;
+        public static final int key_c=0x7f070030;
+        public static final int key_dot=0x7f070031;
         /**  FONTS 
          */
         public static final int roboto_bold=0x7f070004;
@@ -208,8 +225,6 @@ containing a value of this type.
         public static final int robotocondensed_bolditalic=0x7f07000d;
         public static final int robotocondensed_italic=0x7f07000e;
         public static final int robotocondensed_regular=0x7f07000f;
-        public static final int vzorec_neprima=0x7f070018;
-        public static final int vzorec_prima=0x7f070017;
         /**  TEXTS 
          */
         public static final int x=0x7f070012;

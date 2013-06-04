@@ -39,6 +39,13 @@ import com.nineoldandroids.animation.ObjectAnimator;
  */
 public class MainActivity extends MasterActivity {
 
+	private static final int MODE_1 = 0;
+	private static final int MODE_2 = 1;
+	private static final int MODE_3 = 2;
+	private static final int MODE_4 = 3;
+
+	private int MODE = MODE_1;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -82,6 +89,7 @@ public class MainActivity extends MasterActivity {
 		TextViewPlus buttonB = (TextViewPlus)findViewById(R.id.buttonB);
 		TextViewPlus buttonC = (TextViewPlus)findViewById(R.id.buttonC);
 		TextViewPlus buttonD = (TextViewPlus)findViewById(R.id.buttonD);
+		setX(buttonD);
 
 		final int paddingDpHint  = DisplayUtil.toPixels(this, Constants.PADDING_HINT);
 		final int paddingDpNoHint  = DisplayUtil.toPixels(this, Constants.PADDING_NO_HINT);
@@ -227,7 +235,7 @@ public class MainActivity extends MasterActivity {
 
 			}
 		};
-		
+
 		final GestureDetectorCompat gd = new GestureDetectorCompat(this, new OnGestureListener() {
 
 			@Override
@@ -263,25 +271,7 @@ public class MainActivity extends MasterActivity {
 			}
 		});
 
-		gd.setOnDoubleTapListener(new OnDoubleTapListener() {
 
-			@Override
-			public boolean onSingleTapConfirmed(MotionEvent e) {
-				return false;
-			}
-
-			@Override
-			public boolean onDoubleTapEvent(MotionEvent e) {
-				Logg.v("GESTURE DETECTOR", "onDoubleTapEvent");
-				return false;
-			}
-
-			@Override
-			public boolean onDoubleTap(MotionEvent e) {
-				Logg.v("GESTURE DETECTOR", "onDoubleTap");
-				return true;
-			}
-		});
 
 		CompoundButton.OnCheckedChangeListener checkedHandler = new CompoundButton.OnCheckedChangeListener() {
 
@@ -315,14 +305,8 @@ public class MainActivity extends MasterActivity {
 			public void onFocusChange(View v, boolean hasFocus) {
 				switch(v.getId()) {
 				case R.id.boxA:
-					showKeyboard(v.getId());
-					break;
 				case R.id.boxB:
-					showKeyboard(v.getId());
-					break;
 				case R.id.boxC:
-					showKeyboard(v.getId());
-					break;
 				case R.id.boxD:
 					showKeyboard(v.getId());
 					break;
@@ -334,34 +318,38 @@ public class MainActivity extends MasterActivity {
 		View.OnTouchListener touchHandler = new View.OnTouchListener() {
 
 			@Override
-			public boolean onTouch(View v, MotionEvent event) {
+			public boolean onTouch(final View v, MotionEvent event) {
 				switch(v.getId()) {
 				case R.id.boxA:
-					Logg.v("TOUCH", "selection start: "+((EditText)v).getSelectionStart());
-					Logg.v("TOUCH", "selection end: "+((EditText)v).getSelectionEnd());
-					break;
 				case R.id.boxB:
-					showKeyboard(v.getId());
-					Logg.v("TOUCH", "selection start: "+((EditText)v).getSelectionStart());
-					Logg.v("TOUCH", "selection end: "+((EditText)v).getSelectionEnd());
-					break;
 				case R.id.boxC:
-					showKeyboard(v.getId());
-					Logg.v("TOUCH", "selection start: "+((EditText)v).getSelectionStart());
-					Logg.v("TOUCH", "selection end: "+((EditText)v).getSelectionEnd());
-					break;
 				case R.id.boxD:
 					showKeyboard(v.getId());
-					Logg.v("TOUCH", "selection start: "+((EditText)v).getSelectionStart());
-					Logg.v("TOUCH", "selection end: "+((EditText)v).getSelectionEnd());
 					break;
 				case R.id.buttonA:
-					return gd.onTouchEvent(event);
 				case R.id.buttonB:
-					return gd.onTouchEvent(event);
 				case R.id.buttonC:
-					return gd.onTouchEvent(event);
 				case R.id.buttonD:
+					gd.setOnDoubleTapListener(new OnDoubleTapListener() {
+
+						@Override
+						public boolean onSingleTapConfirmed(MotionEvent e) {
+							return false;
+						}
+
+						@Override
+						public boolean onDoubleTapEvent(MotionEvent e) {
+							Logg.v("GESTURE DETECTOR", "onDoubleTapEvent");
+							return false;
+						}
+
+						@Override
+						public boolean onDoubleTap(MotionEvent e) {
+							Logg.v("GESTURE DETECTOR", "onDoubleTap");
+							setX(v);
+							return true;
+						}
+					});
 					return gd.onTouchEvent(event);
 				}
 				return false;
@@ -391,7 +379,7 @@ public class MainActivity extends MasterActivity {
 		boxB.setOnTouchListener(touchHandler);
 		boxC.setOnTouchListener(touchHandler);
 		boxD.setOnTouchListener(touchHandler);
-		
+
 		buttonA.setOnTouchListener(touchHandler);
 		buttonB.setOnTouchListener(touchHandler);
 		buttonC.setOnTouchListener(touchHandler);
@@ -412,57 +400,62 @@ public class MainActivity extends MasterActivity {
 	private void calculateResult(Numbers mNum) {
 		TextViewPlus result = (TextViewPlus)findViewById(R.id.result);
 		Logg.v("type", "type: "+AppSettings.getInstance(this).getType());
-		switch(AppSettings.getInstance(this).getType()) {
-		case Constants.TYPE_NORMAL:
-			if(mNum.textA != null && mNum.textB != null && mNum.textC != null) {
-				if(!mNum.textA.equalsIgnoreCase("") && !mNum.textB.equalsIgnoreCase("") && !mNum.textC.equalsIgnoreCase("")) {
-					double a = Double.parseDouble(mNum.textA);
-					double b = Double.parseDouble(mNum.textB);
-					double c = Double.parseDouble(mNum.textC);
-					double x = ((c*b)/a);
-					if(x > Double.MAX_VALUE) {
-						result.setText("inf.");
+		if(checkNull(mNum)) {
+				double x = calculate(mNum);
+				if(x > Double.MAX_VALUE) {
+					result.setText("inf.");
+				} else {
+					if(x > 1e4 || x < 1e-4) {
+						result.setText(new DecimalFormat("#.#####E0").format(x));
 					} else {
-						if(x > 1e4 || x < 1e-4) {
-							result.setText(new DecimalFormat("#.#####E0").format(x));
-						} else {
-							result.setText(new DecimalFormat("#.#####").format(x));
-						}
-
+						result.setText(new DecimalFormat("#.#####").format(x));
 					}
-				}else {
-					result.setText("");
 				}
-			} else {
-				result.setText("");
-			}
+			
+		} else {
+			result.setText("");
+		}
+
+	}
+	
+	private boolean checkNull(Numbers mNum) {
+		switch(MODE) {
+		case MODE_1:
+			return mNum.textB != null && !mNum.textB.equalsIgnoreCase("") && mNum.textC != null && !mNum.textC.equalsIgnoreCase("") && mNum.textD != null && !mNum.textD.equalsIgnoreCase("") ? true : false;
+		case MODE_2:
+			return mNum.textA != null && !mNum.textA.equalsIgnoreCase("") && mNum.textC != null && !mNum.textC.equalsIgnoreCase("") && mNum.textD != null && !mNum.textD.equalsIgnoreCase("") ? true : false;
+		case MODE_3:
+			return mNum.textA != null && !mNum.textA.equalsIgnoreCase("") && mNum.textB != null && !mNum.textB.equalsIgnoreCase("") && mNum.textD != null && !mNum.textD.equalsIgnoreCase("") ? true : false;
+		case MODE_4:
+			return mNum.textA != null && !mNum.textA.equalsIgnoreCase("") && mNum.textB != null && !mNum.textB.equalsIgnoreCase("") && mNum.textC != null && !mNum.textC.equalsIgnoreCase("") ? true : false;
+		default: return false;
+		}
+	}
+
+
+	private double calculate(Numbers mNum) {
+		double a = mNum.textA != null && !mNum.textA.equalsIgnoreCase("") ? Double.valueOf(mNum.textA) : 0;
+		double b = mNum.textB != null && !mNum.textB.equalsIgnoreCase("") ? Double.valueOf(mNum.textB) : 0;
+		double c = mNum.textC != null && !mNum.textC.equalsIgnoreCase("") ? Double.valueOf(mNum.textC) : 0;
+		double d = mNum.textD != null && !mNum.textD.equalsIgnoreCase("") ? Double.valueOf(mNum.textD) : 0;
+		double x = 0;
+		int calculateType = AppSettings.getInstance(this).getType();
+		switch(MODE) {
+		case MODE_1:
+			x = calculateType == Constants.TYPE_NORMAL ? ((b*c)/d) : ((c*d)/b);
 			break;
-		case Constants.TYPE_INVERT:
-			if(mNum.textA != null && mNum.textB != null && mNum.textC != null) {
-				if(!mNum.textA.equalsIgnoreCase("") && !mNum.textB.equalsIgnoreCase("") && !mNum.textC.equalsIgnoreCase("")) {
-					double a = Double.parseDouble(mNum.textA);
-					double b = Double.parseDouble(mNum.textB);
-					double c = Double.parseDouble(mNum.textC);
-					double x = ((a*b)/c);
-					if(x > Double.MAX_VALUE) {
-						result.setText("inf.");
-					} else {
-						if(x > 1e4 || x < 1e-4) {
-							result.setText(new DecimalFormat("#.#####E0").format(x));
-						} else {
-							result.setText(new DecimalFormat("#.#####").format(x));
-						}
-
-					}
-				}else {
-					result.setText("");
-				}
-			}else {
-				result.setText("");
-			}
+		case MODE_2:
+			x = calculateType == Constants.TYPE_NORMAL ? ((a*d)/c) : ((c*d)/a);
+			break;
+		case MODE_3:
+			x = calculateType == Constants.TYPE_NORMAL ? ((a*d)/b) : ((a*b)/d);
+			break;
+		case MODE_4:
+			x = calculateType == Constants.TYPE_NORMAL ? ((b*c)/a) : ((a*b)/c);
 			break;
 		}
 
+		return x;
 	}
 
 
@@ -470,8 +463,9 @@ public class MainActivity extends MasterActivity {
 		final ImageView arrow_left = (ImageView)findViewById(R.id.arrow_left);
 		final ImageView arrow_right = (ImageView)findViewById(R.id.arrow_right);
 		final TextViewPlus formula = (TextViewPlus)findViewById(R.id.formula);
+		final TextViewPlus formulaTitle = (TextViewPlus)findViewById(R.id.formula_title);
 		AnimatorSet set = new AnimatorSet();
-		set.playTogether(ObjectAnimator.ofFloat(arrow_left, "alpha", start, end), ObjectAnimator.ofFloat(arrow_right, "alpha", start, end), ObjectAnimator.ofFloat(formula, "alpha", start, end));
+		set.playTogether(ObjectAnimator.ofFloat(arrow_left, "alpha", start, end), ObjectAnimator.ofFloat(arrow_right, "alpha", start, end), ObjectAnimator.ofFloat(formula, "alpha", start, end), ObjectAnimator.ofFloat(formulaTitle, "alpha", start, end));
 		set.setDuration(duration);
 		set.addListener(new AnimatorListener() {
 
@@ -489,12 +483,14 @@ public class MainActivity extends MasterActivity {
 			public void onAnimationEnd(Animator arg0) {
 				switch(state) {
 				case Constants.TYPE_NORMAL:
-					formula.setText(getResources().getString(R.string.vzorec_prima));
+					formula.setText(getFormula());
+					formulaTitle.setText(getFormulaTitle());
 					arrow_left.setImageResource(R.drawable.pc_arrow_down);
 					arrow_right.setImageResource(R.drawable.pc_arrow_down);
 					break;
 				case Constants.TYPE_INVERT:
-					formula.setText(getResources().getString(R.string.vzorec_neprima));
+					formula.setText(getFormula());
+					formulaTitle.setText(getFormulaTitle());
 					arrow_left.setImageResource(R.drawable.pc_arrow_down);
 					arrow_right.setImageResource(R.drawable.pc_arrow_up);
 					break;
@@ -502,6 +498,7 @@ public class MainActivity extends MasterActivity {
 				ObjectAnimator.ofFloat(arrow_left, "alpha", end, start).setDuration(duration).start();
 				ObjectAnimator.ofFloat(arrow_right, "alpha", end, start).setDuration(duration).start();
 				ObjectAnimator.ofFloat(formula, "alpha", end, start).setDuration(duration).start();
+				ObjectAnimator.ofFloat(formulaTitle, "alpha", end, start).setDuration(duration).start();
 			}
 
 			@Override
@@ -623,22 +620,38 @@ public class MainActivity extends MasterActivity {
 
 	public void setX(View v) {
 		restoreButtonsBoxs();
-		((TextViewPlus)v).setText(getResources().getString(R.string.x));
 
 		switch(v.getId()) {
 		case R.id.buttonA:
 			((TextViewPlus)findViewById(R.id.textHintA)).setTextAppearance(this, R.style.calculate_text_numbers_X);
+			((TextViewPlus)findViewById(R.id.textHintA)).setText(getResources().getString(R.string.x));
+			((EditText)findViewById(R.id.boxA)).setEnabled(false);
+			MODE = MODE_1;
 			break;
 		case R.id.buttonB:
 			((TextViewPlus)findViewById(R.id.textHintB)).setTextAppearance(this, R.style.calculate_text_numbers_X);
+			((TextViewPlus)findViewById(R.id.textHintB)).setText(getResources().getString(R.string.x));
+			((EditText)findViewById(R.id.boxB)).setEnabled(false);
+			MODE = MODE_2;
 			break;
 		case R.id.buttonC:
 			((TextViewPlus)findViewById(R.id.textHintC)).setTextAppearance(this, R.style.calculate_text_numbers_X);
+			((TextViewPlus)findViewById(R.id.textHintC)).setText(getResources().getString(R.string.x));
+			((EditText)findViewById(R.id.boxC)).setEnabled(false);
+			MODE = MODE_3;
 			break;
 		case R.id.buttonD:
 			((TextViewPlus)findViewById(R.id.textHintD)).setTextAppearance(this, R.style.calculate_text_numbers_X);
+			((TextViewPlus)findViewById(R.id.textHintD)).setText(getResources().getString(R.string.x));
+			((EditText)findViewById(R.id.boxD)).setEnabled(false);
+			MODE = MODE_4;
 			break;
 		}
+
+		((TextViewPlus)v).setText(getResources().getString(R.string.x));
+		((TextViewPlus)findViewById(R.id.formula)).setText(getFormula());
+		((TextViewPlus)findViewById(R.id.formula_title)).setText(getFormulaTitle());
+
 	}
 
 	private void restoreButtonsBoxs() {
@@ -667,6 +680,11 @@ public class MainActivity extends MasterActivity {
 		boxC.setText("");
 		boxD.setText("");
 
+		boxA.setEnabled(true);
+		boxB.setEnabled(true);
+		boxC.setEnabled(true);
+		boxD.setEnabled(true);
+
 		buttonA.setText(letterA);
 		buttonB.setText(letterB);
 		buttonC.setText(letterC);
@@ -684,14 +702,35 @@ public class MainActivity extends MasterActivity {
 	}
 
 
-	private String fromula;
-
-	public void setFormula(String formula) {
-		this.fromula = formula;
-	}
-
+	
 	public String getFormula() {
-		return this.fromula;
+		int calculateType = AppSettings.getInstance(this).getType();
+		switch(MODE) {
+		case MODE_1:
+		return calculateType == Constants.TYPE_NORMAL ? getResources().getString(R.string.formula_normal_mode_1) : getResources().getString(R.string.formula_invert_mode_1);
+		case MODE_2:
+		return calculateType == Constants.TYPE_NORMAL ? getResources().getString(R.string.formula_normal_mode_2) : getResources().getString(R.string.formula_invert_mode_2);
+		case MODE_3:
+		return calculateType == Constants.TYPE_NORMAL ? getResources().getString(R.string.formula_normal_mode_3) : getResources().getString(R.string.formula_invert_mode_3);
+		case MODE_4:
+		return calculateType == Constants.TYPE_NORMAL ? getResources().getString(R.string.formula_normal_mode_4) : getResources().getString(R.string.formula_invert_mode_4);
+		default: return "";
+		}
+	}
+	
+	public String getFormulaTitle() {
+		int calculateType = AppSettings.getInstance(this).getType();
+		switch(MODE) {
+		case MODE_1:
+		return calculateType == Constants.TYPE_NORMAL ? getResources().getString(R.string.formula_title_normal_mode_1) : getResources().getString(R.string.formula_title_invert_mode_1);
+		case MODE_2:
+		return calculateType == Constants.TYPE_NORMAL ? getResources().getString(R.string.formula_title_normal_mode_2) : getResources().getString(R.string.formula_title_invert_mode_2);
+		case MODE_3:
+		return calculateType == Constants.TYPE_NORMAL ? getResources().getString(R.string.formula_title_normal_mode_3) : getResources().getString(R.string.formula_title_invert_mode_3);
+		case MODE_4:
+		return calculateType == Constants.TYPE_NORMAL ? getResources().getString(R.string.formula_title_normal_mode_4) : getResources().getString(R.string.formula_title_invert_mode_4);
+		default: return "";
+		}
 	}
 
 }
